@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pg模拟器 · 日常查询与对照指南</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #faf7f2;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: #2e2b27;
+      line-height: 1.7;
+      padding: 2rem 1.5rem;
+    }
+    .page-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* 主视觉 —— 半是封面半是引言 */
+    .hero {
+      background: #eae4da;
+      padding: 3rem 2rem 2.5rem;
+      border-radius: 32px;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.02);
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #1f1b16;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .hero .sub {
+      font-size: 1.1rem;
+      color: #5b554e;
+      border-left: 4px solid #b7aa9a;
+      padding-left: 1rem;
+      margin-top: 0.75rem;
+      max-width: 80%;
+    }
+    .hero .meta-tag {
+      position: absolute;
+      right: 1.5rem;
+      bottom: 1rem;
+      background: #dad1c4;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      color: #4f4840;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (min-width: 640px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    .card {
+      background: #ffffffec;
+      border-radius: 24px;
+      padding: 1.6rem 1.4rem 1.8rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+      transition: transform 0.1s ease;
+      border: 1px solid #ede8e0;
+    }
+    .card:hover {
+      transform: translateY(-1px);
+      border-color: #d6cdc0;
+    }
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #35302a;
+    }
+    .card h2::before {
+      content: "▹";
+      color: #b09f8c;
+      font-size: 1.3rem;
+    }
+    .card p {
+      font-size: 0.96rem;
+      color: #3d3832;
+      margin-bottom: 0.6rem;
+    }
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+    .card .tag {
+      display: inline-block;
+      background: #f0ebe3;
+      padding: 0.15rem 0.7rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      color: #4d453d;
+      margin-top: 0.5rem;
+    }
+
+    /* 引用块 / 提示框 */
+    .callout-block {
+      background: #ece5db;
+      border-radius: 20px;
+      padding: 1.8rem 2rem;
+      margin: 2rem 0 2.2rem;
+      border-left: 6px solid #b3a28c;
+    }
+    .callout-block p {
+      color: #2d2822;
+    }
+    .callout-block .callout-label {
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      color: #5e554b;
+    }
+
+    /* 自然链接段落 */
+    .link-paragraph {
+      background: transparent;
+      padding: 0.8rem 0 0.2rem;
+      font-size: 1rem;
+    }
+    .link-paragraph a {
+      color: #634b32;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #cfbba8;
+      font-weight: 450;
+    }
+    .link-paragraph a:hover {
+      color: #2a1f14;
+      text-decoration-color: #886f51;
+    }
+
+    .faq-mini {
+      background: #f5f0e9;
+      padding: 1.5rem 1.8rem 1.8rem;
+      border-radius: 24px;
+      margin: 1.8rem 0 2.5rem;
+    }
+    .faq-mini h3 {
+      font-size: 1.2rem;
+      font-weight: 480;
+      margin-bottom: 1rem;
+      color: #332e28;
+    }
+    .faq-mini details {
+      margin-bottom: 0.6rem;
+      border-bottom: 1px solid #ded5c9;
+      padding-bottom: 0.6rem;
+    }
+    .faq-mini details summary {
+      cursor: pointer;
+      font-weight: 440;
+      color: #3a342e;
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+    .faq-mini details summary::before {
+      content: "Q ";
+      font-weight: 500;
+      color: #9b8a76;
+      margin-right: 0.5rem;
+    }
+    .faq-mini details p {
+      margin-top: 0.4rem;
+      color: #4a443d;
+      font-size: 0.92rem;
+      padding-left: 1.8rem;
+    }
+
+    .footer-note {
+      border-top: 1px solid #dbd2c5;
+      margin-top: 2.8rem;
+      padding-top: 2rem;
+      font-size: 0.85rem;
+      color: #6a625a;
+      text-align: center;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 480px) {
+      body { padding: 1.2rem; }
+      .hero { padding: 2rem 1.2rem; }
+      .hero h1 { font-size: 2rem; }
+      .hero .sub { max-width: 100%; }
+      .card { padding: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- hero / 主视觉 -->
+  <div class="hero">
+    <h1>pg模拟器 · 查询与对照手册</h1>
+    <div class="sub">日常使用中，你或许需要一份简洁的参考——<br>用途、场景、以及延伸阅读的入口。</div>
+    <div class="meta-tag">内容线索 · 对照</div>
+  </div>
+
+  <!-- 信息卡片：用途/适合人群/日常场景 -->
+  <div class="card-grid">
+    <div class="card">
+      <h2>用途卡片</h2>
+      <p>作为一款面向文档与数据对照的辅助工具，<strong>pg模拟器</strong>常用于快速检索和参数对比，尤其适合需要反复核对字段、示例与版本差异的工作流。</p>
+      <p>无论是调试配置，还是整理笔记，都可以把它当作一个稳定的信息参考层。</p>
+      <span class="tag">查询 · 对照</span>
+    </div>
+    <div class="card">
+      <h2>适合人群</h2>
+      <p>文档维护者、数据分析岗位的学习者、习惯在多个窗口间比对资料的阅读者，以及日常需要接触结构化文本的从业者。</p>
+      <p>不需要专业编程背景，只需带着具体的查询需求即可。</p>
+      <span class="tag">文档 · 学习者 · 从业者</span>
+    </div>
+    <div class="card">
+      <h2>日常场景</h2>
+      <p>整理技术笔记时随时检索关键词、核对版本更新说明、把一段示例文本与自己的记录逐行比较。</p>
+      <p>也适合在阅读较长文章时，单独打开用作辅助理解的面板。</p>
+      <span class="tag">检索 · 校对 · 延伸</span>
+    </div>
+  </div>
+
+  <!-- 引用块 / 提示框 -->
+  <div class="callout-block">
+    <div class="callout-label">📌 使用提示</div>
+    <p>将需要对照的内容分段放置，保持每段相对独立，能够大幅提升检索效率。不必一次性载入过多信息，按需逐步展开即可。模拟器的核心逻辑是「辅助对照」，而非自动处理，因此手动梳理仍是最可靠的环节。</p>
+  </div>
+
+  <!-- 自然链接段落（嵌入pg模拟器） -->
+  <div class="link-paragraph">
+    <p>如果你正在寻找一个专注于信息对照与查询的轻量环境，<a href="https://pro-pgemulator.com">pg模拟器</a>可以作为一个独立的参考面板使用。它的界面侧重展示与比对，适合需要反复确认字段、参数或段落结构的场景。日常工作中，你可以把它与笔记软件或文档编辑器并列摆放，当作一个可随时查阅的对照层。</p>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <h3>常见问题摘要</h3>
+    <details>
+      <summary>pg模拟器需要安装吗？</summary>
+      <p>不需要，直接通过浏览器使用。保持页面打开即可进行对照与查询，无需额外配置。</p>
+    </details>
+    <details>
+      <summary>可以用于多人协作吗？</summary>
+      <p>主要面向个人使用场景，你可以将对照内容通过截图或文本形式分享给同事，但模拟器本身不提供实时协作功能。</p>
+    </details>
+    <details>
+      <summary>数据会保存在本地吗？</summary>
+      <p>所有操作均在当前浏览器会话中进行，关闭页面后不会保留临时内容。建议将重要对照文本另行保存。</p>
+    </details>
+  </div>
+
+  <!-- 再一个嵌入链接，保持自然 -->
+  <div class="link-paragraph" style="margin-top: 0.2rem;">
+    <p>部分用户习惯将常用参考手册与 <a href="https://pro-pgemulator.com">pg模拟器</a> 配合使用，形成双栏对照的工作流。你也可根据自己的阅读节奏，灵活调整文本区块的大小与顺序。</p>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer-note">
+    内容基于日常使用整理 · 请根据实际需求调整对照方式
+  </div>
+
+</div>
+</body>
+</html>
