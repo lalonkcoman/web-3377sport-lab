@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3377体育 · 简明使用指南与访问提示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            color: #1f2a3a;
+            background: #f5f7fc;
+            min-height: 100vh;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #0b1424 0%, #1a263b 100%);
+            color: #eef2f9;
+            padding: 3.8rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            border-bottom: 3px solid #3f7ada;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 0.6rem;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #b3c7ed;
+            max-width: 600px;
+            margin: 0 auto 0.2rem;
+            border-top: 1px solid #2f4060;
+            padding-top: 1rem;
+            display: inline-block;
+        }
+
+        .hero .sub span {
+            background: #2a3b5c;
+            padding: 0.1rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #d0def5;
+        }
+
+        /* 浅色正文区 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            border-left: 5px solid #3f7ada;
+            padding-left: 1rem;
+            margin: 2.8rem 0 1.2rem;
+            color: #17212e;
+        }
+
+        .section-title:first-of-type {
+            margin-top: 0.5rem;
+        }
+
+        .intro-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 2rem 2.2rem;
+            box-shadow: 0 5px 18px rgba(20, 30, 50, 0.06);
+            margin-bottom: 2rem;
+            border: 1px solid #eaeef5;
+        }
+
+        /* 用途卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0 2.2rem;
+        }
+
+        .card-item {
+            background: white;
+            border-radius: 18px;
+            padding: 1.6rem 1.4rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid #eef2f9;
+            transition: all 0.15s ease;
+        }
+
+        .card-item:hover {
+            border-color: #b6c9ed;
+            box-shadow: 0 6px 16px rgba(63, 122, 218, 0.08);
+        }
+
+        .card-item h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #1b253a;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .card-item p {
+            font-size: 0.95rem;
+            color: #3f4b62;
+        }
+
+        .card-item .num {
+            display: inline-block;
+            background: #e4ebf8;
+            color: #1f3a6b;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 30px;
+            padding: 0.1rem 0.6rem;
+            margin-left: 0.3rem;
+        }
+
+        /* 人群卡片 (适合人群) */
+        .audience-wrap {
+            background: #f2f6fe;
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .audience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            margin-top: 0.8rem;
+        }
+
+        .audience-tags span {
+            background: white;
+            border-radius: 40px;
+            padding: 0.3rem 1.4rem;
+            font-size: 0.95rem;
+            font-weight: 450;
+            border: 1px solid #d9e2f2;
+            color: #1e314d;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+        }
+
+        /* 自然链接段落 */
+        .link-paragraph {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0 1.8rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+            border-left: 6px solid #3f7ada;
+            line-height: 1.8;
+        }
+
+        .link-paragraph a {
+            color: #1f5bc0;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.1s;
+        }
+
+        .link-paragraph a:hover {
+            border-bottom-color: #1f5bc0;
+        }
+
+        .link-paragraph .highlight {
+            background: #f0f4ff;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem 2rem 1.8rem;
+            margin-top: 2.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid #e3e9f5;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.7rem;
+            border-bottom: 1px dashed #dce3ef;
+            padding-bottom: 0.7rem;
+        }
+
+        .faq-mini details:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #1d2a44;
+            padding: 0.2rem 0;
+            font-size: 0.98rem;
+        }
+
+        .faq-mini details[open] summary {
+            color: #1f5bc0;
+        }
+
+        .faq-mini .answer {
+            padding: 0.5rem 0 0.2rem 0.8rem;
+            color: #354662;
+            font-size: 0.95rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px dotted #d5def0;
+            margin: 2.5rem 0 1rem;
+        }
+
+        .footnote {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #54657e;
+            padding: 1.5rem 0 0.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .hero {
+                padding: 2.8rem 1rem 3rem;
+            }
+            .container {
+                padding: 1.8rem 1rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .intro-card {
+                padding: 1.5rem;
+            }
+            .audience-wrap {
+                padding: 1.5rem;
+            }
+            .link-paragraph {
+                padding: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <h1>3377体育</h1>
+        <div class="sub">
+            <span>简明指南 · 访问提示 · 信息聚合</span>
+        </div>
+        <p style="margin-top: 1.2rem; max-width: 650px; margin-left: auto; margin-right: auto; opacity: 0.8; font-size: 0.98rem;">
+            一份面向新用户与日常使用者的轻量参考，聚焦平台用途与访问准备。
+        </p>
+    </header>
+
+    <main class="container">
+        <!-- 主视觉卡片（介绍） -->
+        <div class="intro-card">
+            <p style="font-size: 1.05rem; margin-bottom: 0.8rem;">
+                <strong>3377体育</strong> 是一个以体育资讯、赛事动态与互动内容为主的线上聚合站点，涵盖多类运动项目及社区讨论。页面内容保持更新，结构偏向信息卡片式，便于快速检索与浏览。
+            </p>
+            <p style="color: #2c3d5e;">
+                如果你希望获取体育相关的最新消息、赛事回顾或参与话题讨论，这个平台能提供相对集中的信息入口。以下从用途、适合人群与访问须知三个层面展开说明。
+            </p>
+        </div>
+
+        <!-- 用途卡片网格 -->
+        <h2 class="section-title">常见用途</h2>
+        <div class="card-grid">
+            <div class="card-item">
+                <h3>📋 实时资讯 <span class="num">速览</span></h3>
+                <p>热门赛事比分、转会新闻、联赛排名等更新频率较高，适合快速获取当日要点。</p>
+            </div>
+            <div class="card-item">
+                <h3>📊 数据查询 <span class="num">对比</span></h3>
+                <p>球队历史交锋、球员赛季统计等结构化数据，可按赛季或赛事筛选。</p>
+            </div>
+            <div class="card-item">
+                <h3>💬 社区讨论 <span class="num">互动</span></h3>
+                <p>设有赛事讨论区与个人分析帖，用户可围绕具体话题发表看法。</p>
+            </div>
+            <div class="card-item">
+                <h3>📅 赛程预告 <span class="num">备忘</span></h3>
+                <p>未来一周重点赛事时间表，支持按联赛、日期分类查看。</p>
+            </div>
+        </div>
+
+        <!-- 适合人群 (卡片式展示) -->
+        <div class="audience-wrap">
+            <h3 style="font-weight: 500; font-size: 1.3rem; color: #14233d;">适合人群</h3>
+            <div class="audience-tags">
+                <span>🏅 体育爱好者</span>
+                <span>📈 数据分析型用户</span>
+                <span>🗞️ 资讯日常浏览者</span>
+                <span>📱 移动端快捷查看</span>
+                <span>🧑‍🤝‍🧑 社区互动参与者</span>
+            </div>
+            <p style="margin-top: 1.2rem; color: #2c3d5e; font-size: 0.95rem;">
+                不论你是资深球迷，还是偶尔关注热门赛事，<strong>3377体育</strong> 的内容结构对多数用户都较为友好。如果你习惯通过分类信息快速定位感兴趣的内容，这里的卡片式布局能减少翻阅成本。
+            </p>
+        </div>
+
+        <!-- 自然链接段落 + 访问提醒 -->
+        <div class="link-paragraph">
+            <p>
+                在访问任何体育信息平台前，建议先了解其内容组织方式与更新规则。例如，<a href="https://web-3377sport.com">3377体育</a> 的首页会按赛事热度排列卡片，同时提供导航分类。如果你希望直接进入某一具体板块，可使用顶部菜单或搜索功能。另外，部分实时数据可能存在数分钟延迟，对比多源信息会更可靠。
+            </p>
+            <p style="margin-top: 0.9rem;">
+                考虑到浏览器兼容性与加载体验，推荐使用最新版 Chrome、Edge 或 Safari 访问，并保持网络稳定。部分历史数据页面可能需要 JavaScript 支持，一般情况下所有现代浏览器均可正常显示。
+            </p>
+        </div>
+
+        <!-- 访问提示 + FAQ 摘要 -->
+        <div class="faq-mini">
+            <h3 style="font-weight: 500; font-size: 1.2rem; margin-bottom: 0.8rem; color: #172542;">⚡ 访问提示 · 常见疑问摘要</h3>
+            <details>
+                <summary>是否需要注册账号才能浏览大部分内容？</summary>
+                <div class="answer">基础资讯、赛程与数据查询模块通常无需登录。部分讨论区或个性化收藏功能可能需要注册账号。</div>
+            </details>
+            <details>
+                <summary>移动端页面适配效果如何？</summary>
+                <div class="answer">页面采用自适应布局，在手机与平板上会重新排列卡片。字体大小与按钮间距针对触控操作进行了调整，整体可用性较好。</div>
+            </details>
+            <details>
+                <summary>信息更新频率大概是多久？</summary>
+                <div class="answer">实时比分与关键事件通常在一两分钟内刷新；每日新闻与专栏文章按编辑周期更新，非实时推送。</div>
+            </details>
+            <details>
+                <summary>有没有推荐的使用习惯？</summary>
+                <div class="answer">可将常用赛事或球队加入书签，减少重复检索。另外，注意甄别用户讨论区的个人观点，官方信息以标题标注为准。</div>
+            </details>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #3d5470; border-top: 1px solid #e6ecf7; padding-top: 0.8rem;">
+                📌 更多细节建议直接浏览 <a href="https://web-3377sport.com" style="color: #1f5bc0; text-decoration: none; font-weight: 500;">3377体育</a> 页面，以实际界面为准。
+            </p>
+        </div>
+
+        <hr>
+        <div class="footnote">
+            该介绍页仅供结构参考，内容基于通用体育信息平台特性描述 · 实际以网站最新版本为准
+        </div>
+    </main>
+</body>
+</html>
